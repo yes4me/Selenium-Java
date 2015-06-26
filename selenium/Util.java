@@ -16,7 +16,7 @@ public class Util {
 			//ignore
 		}
 	}
-	
+
 	public static void takeScreenshot(WebDriver driver, String destFileName) {
 		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		File destFile = new File(destFileName);
@@ -25,7 +25,6 @@ public class Util {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
