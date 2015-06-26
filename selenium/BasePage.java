@@ -11,8 +11,10 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,6 +46,7 @@ public class BasePage {
 	public String getText(By locator) {
 		return find(locator).getText();
 	}
+	//Check for a given condition every 500ms until it returns successfully or timeout
 	public void waitFor(By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
@@ -121,7 +124,7 @@ public class BasePage {
 	}
 
 
-	//Others
+	//Other methods rarely used
 	public void windowsMaximize() {
 		driver.manage().window().maximize();
 	}
@@ -137,7 +140,18 @@ public class BasePage {
 		{
 			e.printStackTrace();
 		}
-	 }
+	}
+	public Dimension getSize(By locator) {
+		Dimension dimensions = find(locator).getSize();
+		//System.out.println("Width:"+ dimensions.width);
+		//System.out.println("Height:"+ dimensions.height);
+		return dimensions;
+	}
+	public void getCoordinate(By locator) {
+		Point coordinates = find(locator).getLocation();
+		System.out.println("x Position: "+coordinates.x);
+		System.out.println("y Position: "+coordinates.y);
+	}
 
 
 

@@ -3,6 +3,7 @@ package com.jatin.selenium;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -30,5 +31,7 @@ public class Thomas_spec {
 
 		BasePage basePage = new BasePage(driver);
 		basePage.visit( Constants.BASE_URL );
+		basePage.getCoordinate( By.id("hplogo") );
+
 	}
 }
