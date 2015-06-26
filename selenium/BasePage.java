@@ -31,17 +31,41 @@ public class BasePage {
 		this.driver = driver;
 	}
 
-
-	//General methods
+	/* ---------------------------------------------------------------------------
+	General browser methods
+	--------------------------------------------------------------------------- */
 	public void visit(String url_path) {
 		driver.get(url_path);
+	}
+	public void navigate_forward() {
+		driver.navigate().forward();
+	}
+	public void navigate_refresh() {
+		driver.navigate().refresh();
+	}
+	public void navigate_back() {
+		driver.navigate().back();
 	}
 	public String getTitlePage() {
 		return driver.getTitle();
 	}
+
+
+	/* ---------------------------------------------------------------------------
+	Locators
+	--------------------------------------------------------------------------- */
+	public WebElement find(By locator) {
+		return driver.findElement(locator);
+	}
+	public List<WebElement> finds(By locator) {
+		return driver.findElements(locator);
+	}
 	//Verify
 	public boolean isDisplayed(By locator) {
 		return find(locator).isDisplayed();
+	}
+	public int countElement(By locator) {
+		return finds(locator).size();
 	}
 	public String getText(By locator) {
 		return find(locator).getText();
@@ -50,15 +74,6 @@ public class BasePage {
 	public void waitFor(By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
-	}
-
-
-	//Locator
-	public WebElement find(By locator) {
-		return driver.findElement(locator);
-	}
-	public List<WebElement> finds(By locator) {
-		return driver.findElements(locator);
 	}
 	//Status code 403 responses are the result of the web server being configured to deny access, for some reason, to the requested resource by the client.
     public boolean is403(By locator) {
@@ -69,12 +84,11 @@ public class BasePage {
             return false;
         }
     }
-	public int countElement(By locator) {
-		return finds(locator).size();
-	}
 
 
-	//Forms: input, buttons & select
+	/* ---------------------------------------------------------------------------
+	Forms: input, buttons & select
+	--------------------------------------------------------------------------- */
 	public boolean type(By locator, String text) {
 		if ( isDisplayed(locator) )
 		{
@@ -124,7 +138,9 @@ public class BasePage {
 	}
 
 
-	//Other methods rarely used
+	/* ---------------------------------------------------------------------------
+	Other methods rarely used
+	--------------------------------------------------------------------------- */
 	public void windowsMaximize() {
 		driver.manage().window().maximize();
 	}
