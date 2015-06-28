@@ -1,0 +1,65 @@
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testCompile 'junit:junit:4.12'
+	testCompile 'org.seleniumhq.selenium:selenium-java:2.45.0'
+	testCompile 'commons-io:commons-io:2.4'
+}
+
+test {
+	//show standard out and standard error of the test JVM(s) on the console
+	testLogging.showStandardStreams = true
+	jvmArgs '-Dtmp.dir=' + project.buildDir
+}
+
+task demo(type: Test, dependsOn: testClasses) {
+	testLogging.showStandardStreams = true
+
+	include '**/Demo*'
+}
+
+
+/* ===================================================================
+06/27/2015 Thomas Nguyen
+Learning Gradle = folllowing code has no use
+Source:
+	https://docs.gradle.org/2.4/userguide/tutorial_using_tasks.html
+	http://www.thejavageek.com/2015/06/16/gradle-dependencies/
+	https://www.youtube.com/watch?v=OFUEb7pLLXw
+=================================================================== */
+
+//Declare the objects(tasks). Run using prompt: gradle -q "any task name"
+//PS: Any task with << will not run except if called directly
+task hello		//Display hello
+task world		//Display hello world
+task helloWorld	//Display hello world
+
+hello
+{
+    ext.publicVar		= "publicVar"
+	String privateVar	= "Hello"
+	doLast {
+		println publicVar +"__"+ publicVar.toLowerCase() +"__"+ publicVar.toUpperCase()
+		println privateVar +"__"+ privateVar.toLowerCase() +"__"+ privateVar.toUpperCase()
+	}
+}
+//This can also be written: world(dependsOn: hello) << {
+world
+{
+	//dependsOn = [hello]
+	dependsOn << hello
+	doFirst {
+		println "world1"
+	}
+ 	doLast {
+		println "world2"
+	}
+}
+helloWorld
+{
+	dependsOn = [world, hello]	//Run once hello and then world (just once)
+}
