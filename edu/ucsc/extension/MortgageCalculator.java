@@ -8,6 +8,7 @@ package edu.ucsc.extension;
 import java.io.File;
 
 import lib.DriverFactory;
+import locators.L_MortgageCalculator;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -53,6 +54,7 @@ public class MortgageCalculator {
 		page.takeScreenshot(Constants.TMP_FOLDER + "before.png");
 		page.fillForm();
 		page.submitForm();
+		page.waitFor(L_MortgageCalculator.MONTHLYSCHEDULE_DIV);
 		page.takeScreenshot(Constants.TMP_FOLDER + "after.png");
 	}
 }

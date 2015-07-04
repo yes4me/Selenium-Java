@@ -22,7 +22,7 @@ import config.Constants;
 import config.Paths;
 
 public class P_FlickrDownloader extends BasePage implements PageFactory {
-	private final static int PICTURES_DOWNLOADED_MAX = 50;
+	private final static int PICTURES_DOWNLOADED_MAX = 30;
 	
 	public P_FlickrDownloader(WebDriver driver) {
 		super(driver);

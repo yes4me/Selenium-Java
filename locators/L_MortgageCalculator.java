@@ -14,4 +14,5 @@ public class L_MortgageCalculator {
 	public static final By SHOWYEARAMORTIZATION_CHECKBOX = By.name("param[show_annual]");	//Show annual amortization table
 	public static final By SHOWMONTHLYAMORTIZATION_CHECKBOX = By.name("param[show_monthly]");	//Show monthly amortization table
 	public static final By SUBMIT_BUTTON = By.name("cal");
+	public static final By MONTHLYSCHEDULE_DIV = By.id("monthlyschedule");
 }
