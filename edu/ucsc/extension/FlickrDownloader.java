@@ -1,8 +1,3 @@
-/* ================================================================
-2015/07/04 Thomas
-Purpose: Go to https://www.flickr.com/explore, and download a lot of picture in hires
-PS: See tmp/assignment3.pdf for more info
-================================================================ */
 package edu.ucsc.extension;
 
 import java.io.File;
@@ -41,7 +36,7 @@ public class FlickrDownloader {
 		driver.quit();
 	}
 
-
+	
 	@Test
 	public void flickrDownloader() {
 		System.out.println("RUNNING TEST: flickrDownloader");

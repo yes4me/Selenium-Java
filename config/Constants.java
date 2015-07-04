@@ -1,7 +1,9 @@
 /* ===========================================================================
-2015/06/26 Thomas Nguyen - thomas_ejob@hotmail.com
-Purpose: Keep all constant values in one place
+Created:	2015/06/26
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	Keep all global constant values
 =========================================================================== */
+
 package config;
 
 public class Constants {

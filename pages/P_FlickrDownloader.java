@@ -1,3 +1,9 @@
+/* ===========================================================================
+Created:	2015/07/04
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	Page object for FlickrDownloader
+=========================================================================== */
+
 package pages;
 
 import java.util.ArrayList;

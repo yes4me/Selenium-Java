@@ -1,3 +1,9 @@
+/* ===========================================================================
+Created:	2015/06/26
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	Keep all URL locations
+=========================================================================== */
+
 package config;
 
 public class Paths {

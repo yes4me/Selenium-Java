@@ -1,8 +1,8 @@
-/* ================================================================
-2015/07/01 Thomas
-Purpose: Go to http://www.mortgagecalculator.org/, take a screenshot before and after filling up new parameters
-PS: See tmp/assignment3.pdf for more info
-================================================================ */
+/* ===========================================================================
+Created: 2015/07/01 Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose: Test page for 
+=========================================================================== */
+
 package edu.ucsc.extension;
 
 import java.io.File;
@@ -43,7 +43,7 @@ public class MortgageCalculator {
 		driver.quit();
 	}
 
-
+	
 	@Test
 	public void testMortgageCalculator() {
 		System.out.println("RUNNING TEST: testMortgageCalculator");

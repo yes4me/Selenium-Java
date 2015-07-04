@@ -1,6 +1,7 @@
 /* ===========================================================================
-2015/06/26 Thomas Nguyen - thomas_ejob@hotmail.com
-Purpose: set of Selenium methods that should universally work on all websites
+Created:	2015/06/26
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	set of Selenium methods that should universally work on all websites
 =========================================================================== */
 
 package lib;
@@ -14,14 +15,12 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -107,7 +106,6 @@ public class BasePage {
 	public boolean isDisplayed(By locator) {
 		return find(locator).isDisplayed();
 	}
-
 
 	/* ---------------------------------------------------------------------------
 	Forms: input, buttons & select
@@ -230,16 +228,6 @@ public class BasePage {
 		//WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
 		wait.until(ExpectedConditions.presenceOfElementLocated( locator));
 	}
-	public void waitForLoad() {
-	    ExpectedCondition<Boolean> pageLoadCondition = new
-	        ExpectedCondition<Boolean>() {
-	            public Boolean apply(WebDriver driver) {
-	                return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
-	            }
-	        };
-	    WebDriverWait wait = new WebDriverWait(driver, 30);
-	    wait.until(pageLoadCondition);
-	}	
 	
 	/* ---------------------------------------------------------------------------
 	Other methods

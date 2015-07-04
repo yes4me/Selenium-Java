@@ -1,3 +1,9 @@
+/* ===========================================================================
+Created:	2015/06/26
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	This is a standard in the industry according to the book "Instant RSpec Test-Driven Development How-to" and some website
+=========================================================================== */
+
 package lib;
 
 import org.openqa.selenium.WebDriver;

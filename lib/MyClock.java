@@ -1,3 +1,9 @@
+/* ===========================================================================
+Created:	2015/06/26
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	Generic time related methods
+=========================================================================== */
+
 package lib;
 
 import java.text.DateFormat;

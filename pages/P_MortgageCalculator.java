@@ -1,3 +1,9 @@
+/* ===========================================================================
+Created:	2015/07/01
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	Page object for MortgageCalculator
+=========================================================================== */
+
 package pages;
 
 import org.openqa.selenium.WebDriver;
