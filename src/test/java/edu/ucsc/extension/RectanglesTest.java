@@ -20,19 +20,11 @@ public class RectanglesTest {
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("DONE");
-		//driver.quit();
+		driver.quit();
 	}
 
 	@Test
 	public void testIntersection() {
-		/*
-		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
-		driver.get("file://" + System.getProperty("user.dir") + File.separator + "html" + File.separator + "rect.html");
-		Util.wait(1);
-		*/
-
-		// Please write your code here
 		P_RectanglesTest page = new P_RectanglesTest(driver);
 		page.visit();
 		page.checkIntersect();

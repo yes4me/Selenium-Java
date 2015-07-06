@@ -7,6 +7,7 @@ Purpose:	To practice actionBuilder
 package edu.ucsc.extension;
 
 import lib.DriverFactory;
+import lib.Util;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,15 +26,11 @@ public class Paint {
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("DONE");
-		//driver.quit();
+		driver.quit();
 	}
 
 	@Test
 	public void testPaint() {
-		//WebDriver driver = new FirefoxDriver();
-		//driver.get("file://" + System.getProperty("user.dir") + File.separator + "html" + File.separator + "paint.html");
-
-		// Your drawing code here
 		P_Paint page = new P_Paint(driver);
 		page.visit();
 
@@ -50,7 +47,6 @@ public class Paint {
 		page.drawLine(200, 200, 400, 120);
 		page.drawLine(400, 120, 600, 200);
 
-		//Util.wait(10);
-		//driver.quit();
+		Util.wait(10);
 	}
 }
