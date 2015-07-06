@@ -1,3 +1,8 @@
+/* ===========================================================================
+Created: 2015/07/04 Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose: See ../tmp/Assignment3.pdf
+=========================================================================== */
+
 package edu.ucsc.extension;
 
 import java.io.File;
@@ -36,7 +41,7 @@ public class FlickrDownloader {
 		driver.quit();
 	}
 
-	
+
 	@Test
 	public void flickrDownloader() {
 		System.out.println("RUNNING TEST: flickrDownloader");

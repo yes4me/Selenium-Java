@@ -1,7 +1,7 @@
 /* ===========================================================================
 Created:	2015/07/04
 Author:		Thomas Nguyen - thomas_ejob@hotmail.com
-Purpose:	Page object for FlickrDownloader
+Purpose:	Page object
 =========================================================================== */
 
 package pages;

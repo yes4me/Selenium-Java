@@ -1,6 +1,6 @@
 /* ===========================================================================
 Created: 2015/07/01 Thomas Nguyen - thomas_ejob@hotmail.com
-Purpose: Test page for 
+Purpose: See ../tmp/Assignment3.pdf
 =========================================================================== */
 
 package edu.ucsc.extension;
@@ -44,7 +44,7 @@ public class MortgageCalculator {
 		driver.quit();
 	}
 
-	
+
 	@Test
 	public void testMortgageCalculator() {
 		System.out.println("RUNNING TEST: testMortgageCalculator");

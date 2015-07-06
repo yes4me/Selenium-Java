@@ -17,7 +17,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,7 +41,7 @@ public class BasePage {
 	public String getTitlePage() {
 		return driver.getTitle();
 	}
-	
+
 	public boolean visit(String url_path) {
 		if (url_path != "")
 		{
@@ -87,6 +86,7 @@ public class BasePage {
 	Locators
 	--------------------------------------------------------------------------- */
 	public WebElement find(By locator) {
+		//return (WebElement)((JavascriptExecutor)driver).executeScript("return document.getElementById('email')");
 		return driver.findElement(locator);
 	}
 	public List<WebElement> finds(By locator) {
@@ -132,7 +132,7 @@ public class BasePage {
 		return false;
 	}
 	public void select(By selectLocator, String optionText) {
-		//Either way works:
+		//WAY#1:
 		/*
 		WebElement select = find(selectLocator);
 		List<WebElement> options = select.findElements( By.tagName("option") );
@@ -143,6 +143,10 @@ public class BasePage {
 		}
 		*/
 
+		//WAY#2:
+		//((JavascriptExecutor)driver).executeScript("$(\"select[name='param[start_month]']\").val('" + optionText +"')");
+
+		//WAY#3:
 		Select dropdown = new Select(driver.findElement(selectLocator));
 		dropdown.selectByVisibleText(optionText);
 		//dropdown.selectByValue("5");
@@ -228,7 +232,7 @@ public class BasePage {
 		//WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
 		wait.until(ExpectedConditions.presenceOfElementLocated( locator));
 	}
-	
+
 	/* ---------------------------------------------------------------------------
 	Other methods
 	--------------------------------------------------------------------------- */
@@ -241,15 +245,4 @@ public class BasePage {
             return false;
         }
     }
-	public Dimension getSize(By locator) {
-		Dimension dimensions = find(locator).getSize();
-		//System.out.println("Width:"+ dimensions.width);
-		//System.out.println("Height:"+ dimensions.height);
-		return dimensions;
-	}
-	public void getCoordinate(By locator) {
-		Point coordinates = find(locator).getLocation();
-		System.out.println("x Position: "+coordinates.x);
-		System.out.println("y Position: "+coordinates.y);
-	}
 }

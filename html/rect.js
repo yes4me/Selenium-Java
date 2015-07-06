@@ -16,8 +16,8 @@ $(document).ready(function(){
   for(var i = 0; i < numRect; i++) {
 
     // Pick a random size between 50 and 200
-    var height = getRandomInt(50, 100);
-    var width = getRandomInt(50, 100);
+    var height = getRandomInt(50, 200);
+    var width = getRandomInt(50, 200);
 
     // Pick a random position
     var left = getRandomInt(0, containerWidth - width);

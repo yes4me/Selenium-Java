@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import config.Constants;
+import config.Paths;
 
 public class DriverFactory {
 	private WebDriver driver = null;
@@ -18,7 +19,7 @@ public class DriverFactory {
 	public WebDriver driver() {
 		if (Constants.BROWSER.equals("chrome"))
 		{
-			System.setProperty("webdriver.chrome.driver", "C:\\save\\thomas\\job\\computer\\Selenium Java\\Important code\\vendor\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", Paths.CHROME_FILE);
 			driver = new ChromeDriver();
 		}
 		else if (Constants.BROWSER.equals("firefox"))

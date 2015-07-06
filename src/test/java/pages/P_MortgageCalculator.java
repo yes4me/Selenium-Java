@@ -1,7 +1,7 @@
 /* ===========================================================================
 Created:	2015/07/01
 Author:		Thomas Nguyen - thomas_ejob@hotmail.com
-Purpose:	Page object for MortgageCalculator
+Purpose:	Page object
 =========================================================================== */
 
 package pages;
