@@ -46,7 +46,7 @@ public class P_RectanglesTest extends BasePage implements PageFactory {
 				//if (counter_r1<counter_r2) //This is the way to display only once the intersection between rectangles
 				{
 					Rectangle r2 = new Rectangle(rectangle2.getLocation(), rectangle2.getSize() );
-					if (r1.CompareTo(r2))
+					if (r1.hasIntersection(r2))
 					{
 						System.out.println("Rectangle "+ counter_r1 +"(" + r1.getInfo() +") intersect with rectangle "+ counter_r2 +"(" + r2.getInfo() +")");
 						intersect = true;

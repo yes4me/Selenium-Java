@@ -10,6 +10,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 
 public class Rectangle {
+	int index = 0;
 	Point point = null;
 	Dimension dimension = null;
 
@@ -21,7 +22,7 @@ public class Rectangle {
 		return "Point:"+ point.x +"/"+ point.y +"__Dimension:"+ dimension.width +"/"+ dimension.height;
 	}
 
-	public boolean CompareTo(Rectangle compareRectangle) {
+	public boolean hasIntersection(Rectangle compareRectangle) {
 		int intersection = 0;
 		int r1_x = point.x;
 		int r1_y = point.y;

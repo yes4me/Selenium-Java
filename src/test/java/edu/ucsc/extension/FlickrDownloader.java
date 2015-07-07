@@ -27,10 +27,10 @@ public class FlickrDownloader {
 		outputFolder = System.getProperty("tmp.dir") + File.separator + "tmp";
 		System.out.println("OUTPUT DIR: " + outputFolder);
 	}
-
 	@AfterClass
 	public static void after() {
 	}
+
 	@Before
 	public void setUp() throws Exception {
 		driver = new DriverFactory().driver();
@@ -48,6 +48,7 @@ public class FlickrDownloader {
 
 		P_FlickrDownloader page = new P_FlickrDownloader(driver);
 		page.visit();
+
 		page.downloadAllHiResPicts();
 	}
 }

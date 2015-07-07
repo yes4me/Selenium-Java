@@ -224,7 +224,7 @@ public class BasePage {
 	}
 
 	/* ---------------------------------------------------------------------------
-	Wait, because Selenium is too fast ^_^
+	Wait, Selenium is too fast ^_^
 	--------------------------------------------------------------------------- */
 	//Check for a given condition every 500ms until it returns successfully or timeout
 	public void waitFor(By locator) {

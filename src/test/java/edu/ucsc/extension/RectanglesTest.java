@@ -1,3 +1,8 @@
+/* ===========================================================================
+Created: 2015/07/05 Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose: Check which rectangles touch each others
+=========================================================================== */
+
 package edu.ucsc.extension;
 
 import lib.DriverFactory;
@@ -23,12 +28,16 @@ public class RectanglesTest {
 		driver.quit();
 	}
 
+
 	@Test
 	public void testIntersection() {
+		System.out.println("RUNNING TEST: testIntersection");
+
 		P_RectanglesTest page = new P_RectanglesTest(driver);
 		page.visit();
+
 		page.checkIntersect();
 
-		Util.wait(1);
+		Util.wait(3);
 	}
 }

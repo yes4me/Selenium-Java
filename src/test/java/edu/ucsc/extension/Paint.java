@@ -29,8 +29,11 @@ public class Paint {
 		driver.quit();
 	}
 
+
 	@Test
 	public void testPaint() {
+		System.out.println("RUNNING TEST: testPaint");
+
 		P_Paint page = new P_Paint(driver);
 		page.visit();
 

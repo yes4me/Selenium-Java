@@ -6,11 +6,12 @@ Purpose:	Page object
 
 package pages;
 
+import lib.BasePage;
+import locators.L_MortgageCalculator;
+
 import org.openqa.selenium.WebDriver;
 
 import config.Paths;
-import lib.BasePage;
-import locators.L_MortgageCalculator;
 
 public class P_MortgageCalculator extends BasePage implements PageFactory {
 	public P_MortgageCalculator(WebDriver driver) {
@@ -26,7 +27,7 @@ public class P_MortgageCalculator extends BasePage implements PageFactory {
 	public boolean check_page() {
 		return compareURL(getCurrentURL(), Paths.MORGAGECALCULATOR_URL);
 	}
-	
+
 	public void fillForm() {
 		typeNew(L_MortgageCalculator.HOMEVALUE_INPUT, "600000");
 		typeNew(L_MortgageCalculator.LOANAMOUNT_INPUT, "500000");

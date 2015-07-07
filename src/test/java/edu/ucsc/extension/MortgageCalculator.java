@@ -30,10 +30,10 @@ public class MortgageCalculator {
 		outputFolder = System.getProperty("tmp.dir") + File.separator + "tmp";
 		System.out.println("OUTPUT DIR: " + outputFolder);
 	}
-
 	@AfterClass
 	public static void after() {
 	}
+
 	@Before
 	public void setUp() throws Exception {
 		driver = new DriverFactory().driver();
@@ -51,6 +51,7 @@ public class MortgageCalculator {
 
 		P_MortgageCalculator page = new P_MortgageCalculator(driver);
 		page.visit();
+
 		page.takeScreenshot(Constants.TMP_FOLDER + "before.png");
 		page.fillForm();
 		page.submitForm();
