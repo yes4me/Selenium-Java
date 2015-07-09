@@ -22,8 +22,8 @@ import config.Constants;
 import config.Paths;
 
 public class P_FlickrDownloader extends BasePage implements PageFactory {
-	private final static int PICTURES_DOWNLOADED_MAX = 30;
-	
+	private final static int PICTURES_DOWNLOADED_MAX = 30;	//Max number of pictures that will be downloaded
+
 	public P_FlickrDownloader(WebDriver driver) {
 		super(driver);
 	}
@@ -37,7 +37,7 @@ public class P_FlickrDownloader extends BasePage implements PageFactory {
 	public boolean check_page() {
 		return compareURL(getCurrentURL(), Paths.FLICKR_URL);
 	}
-	
+
 	public void downloadAllHiResPicts() {
 		String pictURL = "";
 		String pictFileName = "";
@@ -53,7 +53,7 @@ public class P_FlickrDownloader extends BasePage implements PageFactory {
 			if (picture_WebElement.size() >= PICTURES_DOWNLOADED_MAX)
 				break;
 		}
-		
+
 		//Get the list of URLs
 		counter=0;
 		List<String> picture_url = new ArrayList<String>();

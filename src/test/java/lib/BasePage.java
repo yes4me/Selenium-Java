@@ -87,9 +87,11 @@ public class BasePage {
 	--------------------------------------------------------------------------- */
 	public WebElement find(By locator) {
 		//return (WebElement)((JavascriptExecutor)driver).executeScript("return document.getElementById('email')");
+		waitFor(locator);
 		return driver.findElement(locator);
 	}
 	public List<WebElement> finds(By locator) {
+		waitFor(locator);
 		return driver.findElements(locator);
 	}
 	public int countElement(By locator) {

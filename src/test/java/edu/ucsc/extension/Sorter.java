@@ -25,7 +25,7 @@ public class Sorter {
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("DONE");
-		driver.quit();
+		//driver.quit();
 	}
 
 
@@ -41,6 +41,6 @@ public class Sorter {
 		Util.wait(3);
 		page.sort_reverseOrder();
 
-		Util.wait(10);
+		Util.wait(3);
 	}
 }

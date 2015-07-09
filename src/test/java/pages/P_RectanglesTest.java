@@ -32,7 +32,7 @@ public class P_RectanglesTest extends BasePage implements PageFactory {
 	}
 
 	public void checkIntersect() {
-		boolean intersect = false;
+		int total_counter = 0;
 		int counter_r1 = 0;
 		int counter_r2 = 0;
 
@@ -43,23 +43,22 @@ public class P_RectanglesTest extends BasePage implements PageFactory {
 			for (WebElement rectangle2 : rectangles)
 			{
 				if ( !rectangle.equals(rectangle2) )
-				//if (counter_r1<counter_r2) //This is the way to display only once the intersection between rectangles
+				if (counter_r1<counter_r2) //This is the way to display only once the intersection between rectangles
 				{
 					Rectangle r2 = new Rectangle(rectangle2.getLocation(), rectangle2.getSize() );
 					if (r1.hasIntersection(r2))
 					{
 						System.out.println("Rectangle "+ counter_r1 +"(" + r1.getInfo() +") intersect with rectangle "+ counter_r2 +"(" + r2.getInfo() +")");
-						intersect = true;
+						total_counter++;
 					}
 				}
 				counter_r2++;
 			}
-			if (!intersect)
-				System.out.println("Rectangle "+ counter_r1 +"(" + r1.getInfo() +") does not intersect.");
-			else
-				intersect = false;
 			counter_r1++;
 			counter_r2=0;
 		}
+
+		if (total_counter>0)
+			System.out.println("SUMMARY: "+ total_counter + " rectangles intersected");
 	}
 }

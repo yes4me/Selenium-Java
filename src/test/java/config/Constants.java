@@ -7,8 +7,7 @@ Purpose:	Keep all global constant values
 package config;
 
 public class Constants {
-	public static final String BROWSER = "chrome";	//Possible value: 'firefox' or 'chrome'
-	public static final String BASE_URL = "http://www.google.com";
+	public static final String BROWSER = "chrome";	//Possible allowed value: 'firefox' or 'chrome'
 	public static final int TIMEOUT = 10;
 
 	//public static final String SCREENSHOT_FOLDER = "C:\\Users\\Thomas\\Desktop\\Selenium Java\\workspace\\assignment3\\src\\test\\java\\edu\\ucsc\\extension\\";
