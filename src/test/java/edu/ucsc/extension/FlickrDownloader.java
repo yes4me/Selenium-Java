@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import pages.P_FlickrDownloader;
 
@@ -46,7 +47,7 @@ public class FlickrDownloader {
 	public void flickrDownloader() {
 		System.out.println("RUNNING TEST: flickrDownloader");
 
-		P_FlickrDownloader page = new P_FlickrDownloader(driver);
+		P_FlickrDownloader page = PageFactory.initElements(driver, P_FlickrDownloader.class);
 		page.visit();
 
 		page.downloadAllHiResPicts();

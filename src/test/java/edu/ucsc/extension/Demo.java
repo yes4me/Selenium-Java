@@ -72,5 +72,4 @@ public class Demo {
 		((JavascriptExecutor)driver).executeScript("$(\"select[name='param[start_month]']\").val('3')");
 		((JavascriptExecutor)driver).executeScript("$(\"select[name='param[start_year]']\").val('2014')");
 	}
-
 }

@@ -7,13 +7,27 @@ Purpose:	Page object
 package pages;
 
 import lib.BasePage;
-import locators.L_MortgageCalculator;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
 
 public class P_MortgageCalculator extends BasePage implements PageFactory {
+	@FindBy(name ="param[homevalue]") private WebElement HOMEVALUE_INPUT;
+	@FindBy(id ="loanamt") private WebElement LOANAMOUNT_INPUT;
+	@FindBy(id ="intrstsrate") private WebElement INTERESTRATE_INPUT;
+	@FindBy(name ="param[start_month]") private WebElement STARTDATE_MONTH_OPTION;
+	@FindBy(name ="param[start_year]") private WebElement STARTDATE_YEAR_OPTION;
+	@FindBy(partialLinkText ="Output parameters") private WebElement PARAMETERS_LINK;
+	@FindBy(name ="param[draw_charts]") private WebElement DRAWCHARTS_CHECKBOX;				//Draw charts
+	@FindBy(name ="param[show_m_vs_w]") private WebElement MONTHLYPAYMENT_CHECKBOX;			//Monthly vs bi-weekly payments
+	@FindBy(name ="param[show_annual]") private WebElement SHOWYEARAMORTIZATION_CHECKBOX;	//Show annual amortization table
+	@FindBy(name ="param[show_monthly]") private WebElement SHOWMONTHLYAMORTIZATION_CHECKBOX;	//Show monthly amortization table
+	@FindBy(name ="cal") private WebElement SUBMIT_BUTTON;
+	@FindBy(id ="monthlyschedule") private WebElement MONTHLYSCHEDULE_DIV;
+
 	public P_MortgageCalculator(WebDriver driver) {
 		super(driver);
 	}
@@ -28,20 +42,24 @@ public class P_MortgageCalculator extends BasePage implements PageFactory {
 		return compareURL(getCurrentURL(), Paths.MORGAGECALCULATOR_URL);
 	}
 
-	public void fillForm() {
-		typeNew(L_MortgageCalculator.HOMEVALUE_INPUT, "600000");
-		typeNew(L_MortgageCalculator.LOANAMOUNT_INPUT, "500000");
-		typeNew(L_MortgageCalculator.INTERESTRATE_INPUT, "5");
-		select(L_MortgageCalculator.STARTDATE_MONTH_OPTION, "Jan");
-		select(L_MortgageCalculator.STARTDATE_YEAR_OPTION, "2016");
+	public void waitPageLoad() {
+		waitFor(MONTHLYSCHEDULE_DIV);
+	}
 
-		click(L_MortgageCalculator.PARAMETERS_LINK);
-		click(L_MortgageCalculator.DRAWCHARTS_CHECKBOX, false);
-		click(L_MortgageCalculator.MONTHLYPAYMENT_CHECKBOX, true);
-		click(L_MortgageCalculator.SHOWYEARAMORTIZATION_CHECKBOX, true);
-		click(L_MortgageCalculator.SHOWMONTHLYAMORTIZATION_CHECKBOX, true);
+	public void fillForm() {
+		typeNew(HOMEVALUE_INPUT, "600000");
+		typeNew(LOANAMOUNT_INPUT, "500000");
+		typeNew(INTERESTRATE_INPUT, "5");
+		select(STARTDATE_MONTH_OPTION, "Jan");
+		select(STARTDATE_YEAR_OPTION, "2016");
+
+		click(PARAMETERS_LINK);
+		click(DRAWCHARTS_CHECKBOX, false);
+		click(MONTHLYPAYMENT_CHECKBOX, true);
+		click(SHOWYEARAMORTIZATION_CHECKBOX, true);
+		click(SHOWMONTHLYAMORTIZATION_CHECKBOX, true);
 	}
 	public void submitForm() {
-		click(L_MortgageCalculator.SUBMIT_BUTTON);
+		click(SUBMIT_BUTTON);
 	}
 }

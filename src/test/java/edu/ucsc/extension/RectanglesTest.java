@@ -6,12 +6,12 @@ Purpose: Check which rectangles touch each others
 package edu.ucsc.extension;
 
 import lib.DriverFactory;
-import lib.Util;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import pages.P_RectanglesTest;
 
@@ -33,11 +33,9 @@ public class RectanglesTest {
 	public void testIntersection() {
 		System.out.println("RUNNING TEST: testIntersection");
 
-		P_RectanglesTest page = new P_RectanglesTest(driver);
+		P_RectanglesTest page = PageFactory.initElements(driver, P_RectanglesTest.class);
 		page.visit();
 
 		page.checkIntersect();
-
-		Util.wait(3);
 	}
 }

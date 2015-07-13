@@ -7,12 +7,12 @@ Purpose:	To practice actionBuilder
 package edu.ucsc.extension;
 
 import lib.DriverFactory;
-import lib.Util;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import pages.P_Paint;
 
@@ -34,7 +34,7 @@ public class Paint {
 	public void testPaint() {
 		System.out.println("RUNNING TEST: testPaint");
 
-		P_Paint page = new P_Paint(driver);
+		P_Paint page = PageFactory.initElements(driver, P_Paint.class);
 		page.visit();
 
 		//Face
@@ -49,7 +49,5 @@ public class Paint {
 		page.drawLine(200, 200, 600, 200);
 		page.drawLine(200, 200, 400, 120);
 		page.drawLine(400, 120, 600, 200);
-
-		Util.wait(10);
 	}
 }

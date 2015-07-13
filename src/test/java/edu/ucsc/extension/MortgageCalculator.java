@@ -8,7 +8,6 @@ package edu.ucsc.extension;
 import java.io.File;
 
 import lib.DriverFactory;
-import locators.L_MortgageCalculator;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,9 +15,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import pages.P_MortgageCalculator;
-import config.Constants;
+import config.Paths;
 
 public class MortgageCalculator {
 	private WebDriver driver;
@@ -49,13 +49,13 @@ public class MortgageCalculator {
 	public void testMortgageCalculator() {
 		System.out.println("RUNNING TEST: testMortgageCalculator");
 
-		P_MortgageCalculator page = new P_MortgageCalculator(driver);
+		P_MortgageCalculator page = PageFactory.initElements(driver, P_MortgageCalculator.class);
 		page.visit();
 
-		page.takeScreenshot(Constants.TMP_FOLDER + "before.png");
 		page.fillForm();
+		page.takeScreenshot(Paths.TMP_FOLDER + "before.png");
 		page.submitForm();
-		page.waitFor(L_MortgageCalculator.MONTHLYSCHEDULE_DIV);
-		page.takeScreenshot(Constants.TMP_FOLDER + "after.png");
+		page.waitPageLoad();
+		page.takeScreenshot(Paths.TMP_FOLDER + "after.png");
 	}
 }

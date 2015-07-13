@@ -6,12 +6,12 @@ Purpose: Sort and reverse sort "rectangles"
 package edu.ucsc.extension;
 
 import lib.DriverFactory;
-import lib.Util;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import pages.P_Sorter;
 
@@ -25,7 +25,7 @@ public class Sorter {
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("DONE");
-		//driver.quit();
+		driver.quit();
 	}
 
 
@@ -33,14 +33,12 @@ public class Sorter {
 	public void sortNumbers() {
 		System.out.println("RUNNING TEST: sortNumbers");
 
-		P_Sorter page = new P_Sorter(driver);
+		P_Sorter page = PageFactory.initElements(driver, P_Sorter.class);
 		page.visit();
 
 		//page.takeScreenshot();
 		page.sort_order();
-		Util.wait(3);
+		//Util.wait(3);
 		page.sort_reverseOrder();
-
-		Util.wait(3);
 	}
 }

@@ -9,14 +9,16 @@ package pages;
 import java.util.List;
 
 import lib.BasePage;
-import locators.L_RectanglesTest;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
 
 public class P_RectanglesTest extends BasePage implements PageFactory {
+	@FindBy(className ="rect") private List<WebElement> RECTANGLE_DIV;
+
 	public P_RectanglesTest(WebDriver driver) {
 		super(driver);
 	}
@@ -36,7 +38,7 @@ public class P_RectanglesTest extends BasePage implements PageFactory {
 		int counter_r1 = 0;
 		int counter_r2 = 0;
 
-		List<WebElement> rectangles = finds(L_RectanglesTest.RECTANGLE_DIV);
+		List<WebElement> rectangles = RECTANGLE_DIV;
 		for (WebElement rectangle : rectangles)
 		{
 			Rectangle r1 = new Rectangle(rectangle.getLocation(), rectangle.getSize() );
@@ -59,6 +61,6 @@ public class P_RectanglesTest extends BasePage implements PageFactory {
 		}
 
 		if (total_counter>0)
-			System.out.println("SUMMARY: "+ total_counter + " rectangles intersected");
+			System.out.println("SUMMARY: total number of intersections: "+ total_counter);
 	}
 }

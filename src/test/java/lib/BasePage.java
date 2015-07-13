@@ -25,6 +25,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import config.Constants;
+import config.Paths;
 
 public class BasePage {
 	private WebDriver driver;
@@ -94,44 +95,66 @@ public class BasePage {
 		waitFor(locator);
 		return driver.findElements(locator);
 	}
+	public int countElement(List<WebElement> webElements) {
+		return webElements.size();
+	}
 	public int countElement(By locator) {
-		return finds(locator).size();
+		return countElement( finds(locator) );
+	}
+	public String getText(WebElement webElement) {
+		return webElement.getText();
 	}
 	public String getText(By locator) {
-		return find(locator).getText();
+		return getText( find(locator) );
 	}
 
 
 	/* ---------------------------------------------------------------------------
 	Verify
 	--------------------------------------------------------------------------- */
+	public boolean isDisplayed(WebElement webElement) {
+		return webElement.isDisplayed();
+	}
 	public boolean isDisplayed(By locator) {
-		return find(locator).isDisplayed();
+		return isDisplayed( find(locator) );
 	}
 
 	/* ---------------------------------------------------------------------------
 	Forms: input, buttons & select
 	--------------------------------------------------------------------------- */
-	public boolean typeNew(By locator, String text) {
-		clear(locator);
-		return type(locator, text);
+	public boolean typeNew(WebElement webElement, String text) {
+		clear(webElement);
+		return type(webElement, text);
 	}
-	public boolean type(By locator, String text) {
-		if ( isDisplayed(locator) )
+	public boolean typeNew(By locator, String text) {
+		return typeNew(find(locator), text);
+	}
+	public boolean type(WebElement webElement, String text) {
+		if ( isDisplayed(webElement) )
 		{
 			//Stuff that can be passed to sendKeys: Keys.SHIFT
-			find(locator).sendKeys(text);
+			webElement.sendKeys(text);
+			return true;
+		}
+		return false;
+	}
+	public boolean type(By locator, String text) {
+		return type(find(locator), text);
+	}
+	public boolean clear(WebElement webElement) {
+		if ( isDisplayed(webElement) )
+		{
+			webElement.clear();
 			return true;
 		}
 		return false;
 	}
 	public boolean clear(By locator) {
-		if ( isDisplayed(locator) )
-		{
-			find(locator).clear();
-			return true;
-		}
-		return false;
+		return clear( find(locator) );
+	}
+	public void select(WebElement webElement, String optionText) {
+		Select dropdown = new Select(webElement);
+		dropdown.selectByVisibleText(optionText);
 	}
 	public void select(By selectLocator, String optionText) {
 		//WAY#1:
@@ -143,59 +166,66 @@ public class BasePage {
 				option.click();
 			}
 		}
-		*/
 
 		//WAY#2:
-		//((JavascriptExecutor)driver).executeScript("$(\"select[name='param[start_month]']\").val('" + optionText +"')");
+		((JavascriptExecutor)driver).executeScript("$(\"select[name='param[start_month]']\").val('" + optionText +"')");
 
 		//WAY#3:
 		Select dropdown = new Select(driver.findElement(selectLocator));
 		dropdown.selectByVisibleText(optionText);
-		//dropdown.selectByValue("5");
-		//dropdown.selectByIndex(3);
+		dropdown.selectByValue("5");
+		dropdown.selectByIndex(3);
+		*/
+		select(find(selectLocator), optionText);
 	}
-	public boolean click(By locator, boolean... checkBox) {
-		waitFor(locator);
-		if ( isDisplayed(locator) )
+
+	public boolean click(WebElement webElement, boolean... checkBox) {
+		waitFor(webElement);
+		if ( isDisplayed(webElement) )
 		{
 			if (checkBox.length > 0)
 			{
 				if (Boolean.TRUE.equals(checkBox[0]))
 				{
-					if (!find(locator).isSelected())
-						find(locator).click();
+					if (!webElement.isSelected())
+						webElement.click();
 				}
 				else if (Boolean.FALSE.equals(checkBox[0]))
 				{
-					if (find(locator).isSelected())
-						find(locator).click();
+					if (webElement.isSelected())
+						webElement.click();
 				}
 			}
 			else
 			{
-				find(locator).click();
+				webElement.click();
 			}
+			return true;
+		}
+		return false;
+	}
+	public boolean click(By locator, boolean... checkBox) {
+		return click(find(locator), checkBox);
+	}
+	public boolean submit(WebElement webElement) {
+		waitFor(webElement);
+		if ( isDisplayed(webElement) )
+		{
+			webElement.submit();
 			return true;
 		}
 		return false;
 	}
 	public boolean submit(By locator) {
-		waitFor(locator);
-		if ( isDisplayed(locator) )
-		{
-			find(locator).submit();
-			return true;
-		}
-		return false;
+		return submit( find(locator) );
 	}
-
 
 	/* ---------------------------------------------------------------------------
 	Pictures
 	--------------------------------------------------------------------------- */
 	//Source: http://stackoverflow.com/questions/997482/does-java-support-default-parameter-values
 	public boolean takeScreenshot(String... fileName) {
-		String screenshotFileName = fileName.length>0? fileName[0] : Constants.SCREENSHOT_FILENAME;
+		String screenshotFileName = fileName.length>0? fileName[0] : Paths.SCREENSHOT_FILENAME;
 		try
 		{
 			File screenFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -208,10 +238,12 @@ public class BasePage {
 		}
 		return false;
 	}
-	public boolean downloadPict(By locator, String fileName) {
-		WebElement picture = find( locator );
-		String url = picture.getAttribute("src");
+	public boolean downloadPict(WebElement webElement, String fileName) {
+		String url = webElement.getAttribute("src");
 		return downloadPict(url, fileName);
+	}
+	public boolean downloadPict(By locator, String fileName) {
+		return downloadPict( find(locator), fileName);
 	}
 	public boolean downloadPict(String url, String fileName) {
 		try {
@@ -229,6 +261,11 @@ public class BasePage {
 	Wait, Selenium is too fast ^_^
 	--------------------------------------------------------------------------- */
 	//Check for a given condition every 500ms until it returns successfully or timeout
+	public void waitFor(WebElement webElement) {
+		WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
+		//WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
+		wait.until(ExpectedConditions.visibilityOf(webElement));
+	}
 	public void waitFor(By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
 		//WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
