@@ -39,18 +39,13 @@ public class BasePage {
 	/* ---------------------------------------------------------------------------
 	Windows
 	--------------------------------------------------------------------------- */
-	public String getTitlePage() {
+	public String getTitle() {
 		return driver.getTitle();
 	}
-
-	public boolean visit(String url_path) {
-		if (url_path != "")
-		{
-			driver.get(url_path);
-			return true;
-		}
-		return false;
+	public boolean checkPartialTitle(String title) {
+		return getTitle().contains(title);
 	}
+
 	public String fixURL(String url) {
 		url = url.trim();
 		url = url.replaceAll("^www.", "http://www.");
@@ -67,6 +62,18 @@ public class BasePage {
 	public String getCurrentURL() {
 		return driver.getCurrentUrl();
 	}
+	public boolean checkPartialURL(String url) {
+		return getCurrentURL().contains(url);
+	}
+
+	public boolean visit(String url_path) {
+		if (url_path != "")
+		{
+			driver.get(url_path);
+			return true;
+		}
+		return false;
+	}
 	public void navigate_forward() {
 		driver.navigate().forward();
 	}
@@ -76,11 +83,23 @@ public class BasePage {
 	public void navigate_back() {
 		driver.navigate().back();
 	}
+
 	public void windowsMaximize() {
 		driver.manage().window().maximize();
 	}
 	public void windowsResize(int height, int width) {
 		driver.manage().window().setSize( new Dimension(height, width) );
+	}
+
+	/* ---------------------------------------------------------------------------
+	Frames
+	--------------------------------------------------------------------------- */
+
+	public void ListAllFrames() {
+	    final List<WebElement> iframes = driver.findElements(By.tagName("iframe"));
+	    for (WebElement iframe : iframes) {
+			System.out.println("==>"+ iframe.getAttribute("id") );
+	    }
 	}
 
 	/* ---------------------------------------------------------------------------
@@ -113,7 +132,16 @@ public class BasePage {
 	Verify
 	--------------------------------------------------------------------------- */
 	public boolean isDisplayed(WebElement webElement) {
-		return webElement.isDisplayed();
+		try
+		{
+			return webElement.isDisplayed();
+		}
+		catch (Exception e)
+		{
+			//System.out.println("Error isDisplayed: "+ e);
+			//e.printStackTrace();
+		}
+		return false;
 	}
 	public boolean isDisplayed(By locator) {
 		return isDisplayed( find(locator) );
@@ -234,6 +262,7 @@ public class BasePage {
 		}
 		catch (IOException e)
 		{
+			System.out.println("Error takeScreenshot: "+ e);
 			e.printStackTrace();
 		}
 		return false;
@@ -250,8 +279,10 @@ public class BasePage {
 			org.apache.commons.io.FileUtils.copyURLToFile(new URL(url), new File(fileName) );
 			return true;
 		} catch (MalformedURLException e) {
+			System.out.println("MalformedURLException downloadPict: "+ e);
 			e.printStackTrace();
 		} catch (IOException e) {
+			System.out.println("IOException downloadPict: "+ e);
 			e.printStackTrace();
 		}
 		return false;
@@ -262,14 +293,31 @@ public class BasePage {
 	--------------------------------------------------------------------------- */
 	//Check for a given condition every 500ms until it returns successfully or timeout
 	public void waitFor(WebElement webElement) {
-		WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
-		//WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
-		wait.until(ExpectedConditions.visibilityOf(webElement));
+		try
+		{
+			WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
+			wait.until(ExpectedConditions.visibilityOf(webElement));
+		}
+		catch (Exception e)
+		{
+			System.out.println("Exception waitFor: "+ e);
+			e.printStackTrace();
+			//throw new NoSuchElementException("No webElement");
+		}
 	}
 	public void waitFor(By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
 		//WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
-		wait.until(ExpectedConditions.presenceOfElementLocated( locator));
+		wait.until(ExpectedConditions.visibilityOfElementLocated( locator));
+	}
+
+	//Wait for a specific title
+	public void waitForPartialTitle(String title) {
+		WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
+		wait.until(ExpectedConditions.titleContains(title));
+
+		if ( !checkPartialTitle(title) )
+			throw new IllegalStateException("Not at: "+ title);
 	}
 
 	/* ---------------------------------------------------------------------------

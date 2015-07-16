@@ -28,6 +28,4 @@ public class DriverFactory {
 		}
 		return driver;
 	}
-	//Save the window handle
-	//TO DO: String baseHandle = driver.getWindowHandle();
 }

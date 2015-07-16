@@ -4,7 +4,7 @@ Author:		Thomas Nguyen - thomas_ejob@hotmail.com
 Purpose:	Page object
 =========================================================================== */
 
-package pages;
+package pages_various;
 
 import lib.BasePage;
 import lib.MyMouse;
@@ -13,11 +13,12 @@ import org.openqa.selenium.WebDriver;
 
 import config.Paths;
 
-public class P_TestPaint extends BasePage implements PageFactory {
+public class P_Paint extends BasePage implements BasicPageObject {
 	private final static int CLICK_INTERVAL = 10;
-	MyMouse myMouse;
 
-	public P_TestPaint(WebDriver driver) {
+	private MyMouse myMouse;
+
+	public P_Paint(WebDriver driver) {
 		super(driver);
 		myMouse = new MyMouse(driver);
 	}
@@ -28,7 +29,7 @@ public class P_TestPaint extends BasePage implements PageFactory {
 	}
 
 	@Override
-	public boolean check_page() {
+	public boolean checkPage() {
 		return compareURL(getCurrentURL(), Paths.TEST_PAINTING_URL);
 	}
 

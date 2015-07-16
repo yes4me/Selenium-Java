@@ -4,15 +4,14 @@ Author:		Thomas Nguyen - thomas_ejob@hotmail.com
 Purpose:	Object for the page object P_RectanglesTest
 =========================================================================== */
 
-package pages;
+package pages_various;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 
 public class Rectangle {
-	int index = 0;
-	Point point = null;
-	Dimension dimension = null;
+	private Point point = null;
+	private Dimension dimension = null;
 
 	Rectangle(Point point, Dimension dimension) {
 		this.point	= point;

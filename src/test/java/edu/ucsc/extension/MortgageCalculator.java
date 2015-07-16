@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import pages.P_MortgageCalculator;
+import pages_various.P_MortgageCalculator;
 import config.Paths;
 
 public class MortgageCalculator {
@@ -52,8 +52,8 @@ public class MortgageCalculator {
 		P_MortgageCalculator page = PageFactory.initElements(driver, P_MortgageCalculator.class);
 		page.visit();
 
-		page.fillForm();
 		page.takeScreenshot(Paths.TMP_FOLDER + "before.png");
+		page.fillForm();
 		page.submitForm();
 		page.waitPageLoad();
 		page.takeScreenshot(Paths.TMP_FOLDER + "after.png");

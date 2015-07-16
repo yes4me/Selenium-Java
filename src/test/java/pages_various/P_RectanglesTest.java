@@ -4,7 +4,7 @@ Author:		Thomas Nguyen - thomas_ejob@hotmail.com
 Purpose:	Page object
 =========================================================================== */
 
-package pages;
+package pages_various;
 
 import java.util.List;
 
@@ -16,8 +16,8 @@ import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
 
-public class P_RectanglesTest extends BasePage implements PageFactory {
-	@FindBy(className ="rect") private List<WebElement> RECTANGLE_DIV;
+public class P_RectanglesTest extends BasePage implements BasicPageObject {
+	@FindBy(className = "rect") private List<WebElement> rectangle_div;
 
 	public P_RectanglesTest(WebDriver driver) {
 		super(driver);
@@ -29,7 +29,7 @@ public class P_RectanglesTest extends BasePage implements PageFactory {
 	}
 
 	@Override
-	public boolean check_page() {
+	public boolean checkPage() {
 		return compareURL(getCurrentURL(), Paths.RECTANGLES_TEST_URL);
 	}
 
@@ -38,7 +38,7 @@ public class P_RectanglesTest extends BasePage implements PageFactory {
 		int counter_r1 = 0;
 		int counter_r2 = 0;
 
-		List<WebElement> rectangles = RECTANGLE_DIV;
+		List<WebElement> rectangles = rectangle_div;
 		for (WebElement rectangle : rectangles)
 		{
 			Rectangle r1 = new Rectangle(rectangle.getLocation(), rectangle.getSize() );

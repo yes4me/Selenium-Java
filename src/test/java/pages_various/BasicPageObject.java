@@ -4,9 +4,9 @@ Author:		Thomas Nguyen - thomas_ejob@hotmail.com
 Purpose:	Minimum Page object requirement
 =========================================================================== */
 
-package pages;
+package pages_various;
 
-public interface PageFactory {
+public interface BasicPageObject {
 	public void visit();
-	public boolean check_page();
+	public boolean checkPage();
 }

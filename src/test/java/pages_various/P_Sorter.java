@@ -1,4 +1,4 @@
-package pages;
+package pages_various;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
 
-public class P_Sorter extends BasePage implements PageFactory {
-	//@FindBy(className ="ui-state-default ui-sortable-handle") private WebElement SLOT_LI;	//NOT ALLOWED
-	@FindBy(tagName ="li") private List<WebElement> SLOT_LI;
+public class P_Sorter extends BasePage implements BasicPageObject {
+	//@FindBy(className ="ui-state-default ui-sortable-handle") private WebElement slot_LI;	//NOT ALLOWED
+	@FindBy(tagName = "li") private List<WebElement> slot_LI;
 
-	MyMouse myMouse;
+	private MyMouse myMouse;
 
 	public P_Sorter(WebDriver driver) {
 		super(driver);
@@ -28,12 +28,12 @@ public class P_Sorter extends BasePage implements PageFactory {
 	}
 
 	@Override
-	public boolean check_page() {
+	public boolean checkPage() {
 		return compareURL(getCurrentURL(), Paths.SORTER_URL);
 	}
 
 	public void sort_order() {
-		List<WebElement> rectangles = SLOT_LI;
+		List<WebElement> rectangles = slot_LI;
 		int counter = 0;
 
 		for (int i=0; i<rectangles.size(); i++)
@@ -47,14 +47,14 @@ public class P_Sorter extends BasePage implements PageFactory {
 				if (id == counter)
 				{
 					myMouse.mouseDragAndDrop(rectangle2, rectangle);
-					rectangles = SLOT_LI;
+					rectangles = slot_LI;
 					break;
 				}
 			}
 		}
 	}
 	public void sort_reverseOrder() {
-		List<WebElement> rectangles = SLOT_LI;
+		List<WebElement> rectangles = slot_LI;
 		int counter = 0;
 
 		for (int i=0; i<rectangles.size(); i++)
@@ -68,7 +68,7 @@ public class P_Sorter extends BasePage implements PageFactory {
 				if (id == rectangles.size()-counter+1)
 				{
 					myMouse.mouseDragAndDrop(rectangle2, rectangle);
-					rectangles = SLOT_LI;
+					rectangles = slot_LI;
 					break;
 				}
 			}

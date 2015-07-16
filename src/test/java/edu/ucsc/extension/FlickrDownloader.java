@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import pages.P_FlickrDownloader;
+import pages_various.P_FlickrDownloader;
 
 public class FlickrDownloader {
 	private WebDriver driver;

@@ -4,7 +4,7 @@ Author:		Thomas Nguyen - thomas_ejob@hotmail.com
 Purpose:	Page object
 =========================================================================== */
 
-package pages;
+package pages_various;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +20,12 @@ import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
 
-public class P_FlickrDownloader extends BasePage implements PageFactory {
-	@FindBy(className ="download") private WebElement DOWNLOAD_HREF;
-	@FindBy(partialLinkText ="View all sizes") private WebElement VIEW_ALL_SIZE_HREF;
-	@FindBy(xpath ="//div[@id='allsizes-photo']/img") private WebElement MAIN_PHOTO_PICT;
-
+public class P_FlickrDownloader extends BasePage implements BasicPageObject {
 	private final static int PICTURES_DOWNLOADED_MAX = 5;	//Max number of pictures that will be downloaded
+
+	@FindBy(className = "download") private WebElement downloadHREF;
+	@FindBy(partialLinkText = "View all sizes") private WebElement viewAllSizeHREF;
+	@FindBy(xpath = "//div[@id='allsizes-photo']/img") private WebElement mainPhotoPict;
 
 	public P_FlickrDownloader(WebDriver driver) {
 		super(driver);
@@ -37,7 +37,7 @@ public class P_FlickrDownloader extends BasePage implements PageFactory {
 	}
 
 	@Override
-	public boolean check_page() {
+	public boolean checkPage() {
 		return compareURL(getCurrentURL(), Paths.FLICKR_URL);
 	}
 
@@ -72,9 +72,9 @@ public class P_FlickrDownloader extends BasePage implements PageFactory {
 		{
 			visit(url);
 			windowsMaximize();
-			click(DOWNLOAD_HREF);
-			click(VIEW_ALL_SIZE_HREF);
-			pictURL = MAIN_PHOTO_PICT.getAttribute("src");
+			click(downloadHREF);
+			click(viewAllSizeHREF);
+			pictURL = mainPhotoPict.getAttribute("src");
 			pictFileName = FilenameUtils.getName(pictURL);
 			downloadPict( pictURL, Paths.TMP_FOLDER + pictFileName);
 		}

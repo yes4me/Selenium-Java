@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import pages.P_Sorter;
+import pages_various.P_Sorter;
 
 public class Sorter {
 	private WebDriver driver;

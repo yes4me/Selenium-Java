@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import pages.P_Paint;
+import pages_various.P_Paint;
 
 public class Paint {
 	private WebDriver driver;
