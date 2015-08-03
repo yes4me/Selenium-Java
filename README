@@ -1,9 +1,26 @@
 ========================================================================================
 Author:         Thomas Nguyen
-Latest code:    https://github.com/yes4me
+Latest code:    https://github.com/yes4me/Selenium-Java
 Status:         Browser Chrome 100% working
                 Browser Firefox untested (too slow on my computer)
 History:        Assignment 5 completed on 07/16/2015
+========================================================================================
+
+Download: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+	- Java JDK
+Download: https://eclipse.org/downloads/
+	- Install Eclipse IDE for Java Developers
+Download: http://www.seleniumhq.org/download/
+	- Selenium Standalone Server
+	- Selenium Client & WebDriver Language Bindings (in Java in my case)
+	- Google Chrome Driver
+
+ECLIPSE SETUP:
+	Right click your project in Package Explorer > click Properties
+	go to Java Build Path > Libraries tab
+	click on 'Add Library' button > select JUnit
+	click on 'Add External JAR file' button > add Selenium Server and Client JAR file
+
 ========================================================================================
 
 Overview of the project:
