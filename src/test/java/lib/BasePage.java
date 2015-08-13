@@ -233,7 +233,7 @@ public class BasePage {
 		return false;
 	}
 	public boolean click(By locator, boolean... checkBox) {
-		return click(find(locator), checkBox);
+		return click(find(locator), checkBox[0]);
 	}
 	public boolean submit(WebElement webElement) {
 		waitFor(webElement);
