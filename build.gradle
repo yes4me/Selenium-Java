@@ -1,38 +1,127 @@
+/* ===========================================================================
+Created: 2015/08/10 Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose: Just learning Gradle (written on Grovy language)
+PS: https://docs.gradle.org/current/dsl/
+
+
+What to expect in a Gradle file:
+- Compile the java code
+- Run tests
+- Copy static resources
+- Format test results
+- build a JAR
+- top level task that does all of these things
+
+cmd> gradle tasks			//==> list all tasks available for Gradle to run
+cmd> gradle build			//==> create all folders, compile and run java code, copy the class files and test files on its respective directory
+cmd> gradle <task name>		//==> run the task
+
+//This is the equivalent of: javac file.java (only done if the files were not "UP-TO-DATE"), and java file.class
+task rect(type: JavaExec) {
+	//dependsOn = [compileJava]				//Already added by default
+	main = 'org.gradle.poetry.Poetry'		//Workfolder
+	classpath = runtimeClasspath
+}
+=========================================================================== */
+
+//Documentation: https://docs.gradle.org/current/userguide/plugins.html
 apply plugin: 'java'
 
+
+//Software repository is a storage location from which software packages may be retrieved and installed on a computer.
+//Gradle needs to know about the things that your project needs to build or run, in order to find them.
+//By default, Gradle does not define any repositories. You need to define at least one before you can use external dependencies. One option is use the Maven central repository
 repositories {
   mavenCentral()
 }
+
 
 dependencies {
   testCompile 'junit:junit:4.12'
   testCompile 'org.seleniumhq.selenium:selenium-java:2.45.0'
   testCompile 'commons-io:commons-io:2.4'
-  
+
+  //compile project(':folder1')		//compile the files in folder1 of another project. It is defined later on
+  //compile project(':folder2')		//compile the files in folder2 of another project, and now run the rest of the code
 }
+/*
+//Folder1 needs junit to run
+project(':folder1') {
+	dependencies {
+		testCompile 'junit:junit:4.12'
+	}
+}
+*/
+
+
 
 test {
   testLogging.showStandardStreams = true
-  
+
   jvmArgs '-Dtmp.dir=' + project.buildDir
 }
 
 task demo(type: Test, dependsOn: testClasses) {
-	testLogging.showStandardStreams = true		
+	testLogging.showStandardStreams = true
 	include '**/Demo*'
 }
 
 task rect(type: Test, dependsOn: testClasses) {
-	testLogging.showStandardStreams = true		
+	testLogging.showStandardStreams = true
 	include '**/Rectangles*'
 }
 
 task paint(type: Test, dependsOn: testClasses) {
-	testLogging.showStandardStreams = true		
+	testLogging.showStandardStreams = true
 	include '**/Paint*'
 }
 
 task sort(type: Test, dependsOn: testClasses) {
-	testLogging.showStandardStreams = true		
+	testLogging.showStandardStreams = true
 	include '**/Sorter*'
+}
+
+/* ===========================================================================
+Tasks form a "Directed Acyclic Graph"
+=========================================================================== */
+
+def myObject() {
+	println "hi"
+}
+//cmd> gradle world => "hello world"
+task hello {
+	//gradle hello => "hello"
+	doLast {
+		print "hello"
+	}
+}
+task world {
+	//gradle world => "hello world"
+	myObject()
+	dependsOn = [hello]				//Can also be written as: "dependsOn << hello"
+	doLast {
+		println " world"
+	}
+}
+
+
+//cmd>gradle goodMorning => "good morning"
+task good							//Define task, declare them later on
+task morning
+task goodMorning {
+	//gradle goodMorning => "good morning"
+	dependsOn = [good, morning]		//Does the same as because Gradle detects infinite loop(?): "dependsOn = [morning]"
+}
+good {
+	//gradle hello => "good"
+	doLast {
+		print "good"
+	}
+}
+morning {
+	//gradle world => "hello world"
+	dependsOn << good
+	doLast {
+		println " morning"
+	}
 }

@@ -21,6 +21,5 @@ public class Paths {
 	public static final String RECTANGLES_TEST_URL = "file://" + System.getProperty("user.dir") + File.separator + "html" + File.separator + "rect.html";
 	public static final String SORTER_URL = "file://" + System.getProperty("user.dir") + File.separator + "html" + File.separator + "sorter.html";
 	public static final String TEST_PAINTING_URL = "file://" + System.getProperty("user.dir") + File.separator + "html" + File.separator + "paint.html";
-
 	public static final String WORDPRESS_URL = "https://yes4me.wordpress.com";
 }

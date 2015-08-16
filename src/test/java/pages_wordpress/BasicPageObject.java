@@ -1,7 +1,7 @@
 /* ===========================================================================
 Created:	2015/07/12
 Author:		Thomas Nguyen - thomas_ejob@hotmail.com
-Purpose:	Minimum Page object requirement
+Purpose:	Common UNdefined methods for all page objects for wordpress.com
 =========================================================================== */
 
 package pages_wordpress;

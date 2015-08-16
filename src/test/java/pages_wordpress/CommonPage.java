@@ -1,3 +1,9 @@
+/* ===========================================================================
+Created:	2015/07/13
+Author:		Thomas Nguyen - thomas_ejob@hotmail.com
+Purpose:	Common defined methods for all page objects for wordpress.com
+=========================================================================== */
+
 package pages_wordpress;
 
 import lib.BasePage;

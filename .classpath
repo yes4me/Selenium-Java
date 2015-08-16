@@ -4,5 +4,8 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Thomas/Desktop/Selenium Java/eclipse/plugins/selenium-java-2.47.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Thomas/Desktop/Selenium Java/eclipse/plugins/selenium-server-standalone-2.47.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
