@@ -29,7 +29,7 @@ public class MyClock {
         c.set(Calendar.MINUTE, 0);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
-        long howMany = (c.getTimeInMillis()-System.currentTimeMillis());		
-		return Long.toString(howMany); 
+        long howMany = (c.getTimeInMillis()-System.currentTimeMillis());
+		return Long.toString(howMany);
 	}
 }
