@@ -9,14 +9,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class Util {
-	public static void wait(int seconds) {
+	public static void wait(int milliseconds) {
 		try {
-			Thread.sleep(seconds * 1000);
+			Thread.sleep(milliseconds);
 		}catch(Exception e) {
 			//ignore
 		}
 	}
-	
+
 	public static void takeScreenshot(WebDriver driver, String destFileName) {
 		File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		File destFile = new File(destFileName);

@@ -8,7 +8,8 @@ package config;
 
 public class Constants {
 	public static final String BROWSER	= "chrome";	//Possible allowed value: 'firefox' or 'chrome'
-	public static final int TIMEOUT		= 10;
+	public static final int GLOBAL_TIMEOUT	= 10;	//defined in DriverFactory.java
+	public static final int TIMEOUT			= 10;
 
 	//Email used: yes4me@cuvox.de
 	public static final String DEFAULT_WORDPRESS_USERNAME = "yes4me";

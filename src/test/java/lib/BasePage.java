@@ -124,7 +124,7 @@ public class BasePage {
 		return webElement.getText();
 	}
 	public String getText(By locator) {
-		return getText( find(locator) );
+		return getText( driver.findElement(locator) );
 	}
 
 
@@ -144,7 +144,7 @@ public class BasePage {
 		return false;
 	}
 	public boolean isDisplayed(By locator) {
-		return isDisplayed( find(locator) );
+		return isDisplayed( driver.findElement(locator) );
 	}
 
 	/* ---------------------------------------------------------------------------
@@ -155,7 +155,7 @@ public class BasePage {
 		return type(webElement, text);
 	}
 	public boolean typeNew(By locator, String text) {
-		return typeNew(find(locator), text);
+		return typeNew( driver.findElement(locator), text);
 	}
 	public boolean type(WebElement webElement, String text) {
 		if ( isDisplayed(webElement) )
@@ -167,7 +167,7 @@ public class BasePage {
 		return false;
 	}
 	public boolean type(By locator, String text) {
-		return type(find(locator), text);
+		return type( driver.findElement(locator), text);
 	}
 	public boolean clear(WebElement webElement) {
 		if ( isDisplayed(webElement) )
@@ -178,7 +178,7 @@ public class BasePage {
 		return false;
 	}
 	public boolean clear(By locator) {
-		return clear( find(locator) );
+		return clear( driver.findElement(locator) );
 	}
 	public void select(WebElement webElement, String optionText) {
 		Select dropdown = new Select(webElement);
@@ -204,7 +204,7 @@ public class BasePage {
 		dropdown.selectByValue("5");
 		dropdown.selectByIndex(3);
 		*/
-		select(find(selectLocator), optionText);
+		select( driver.findElement(selectLocator), optionText);
 	}
 
 	public boolean click(WebElement webElement, boolean... checkBox) {
@@ -233,19 +233,26 @@ public class BasePage {
 		return false;
 	}
 	public boolean click(By locator, boolean... checkBox) {
-		return click(find(locator), checkBox[0]);
+		return click( driver.findElement(locator), checkBox);
 	}
+
 	public boolean submit(WebElement webElement) {
+		System.out.println("IN");
+		//driver.findElement( By.name("btnK") ).submit();
+
 		waitFor(webElement);
+		System.out.println("WAIT FONE");
 		if ( isDisplayed(webElement) )
 		{
+			System.out.println("INSIDE");
 			webElement.submit();
 			return true;
 		}
+		System.out.println("OUT");
 		return false;
 	}
 	public boolean submit(By locator) {
-		return submit( find(locator) );
+		return submit( driver.findElement(locator) );
 	}
 
 	/* ---------------------------------------------------------------------------
@@ -272,7 +279,7 @@ public class BasePage {
 		return downloadPict(url, fileName);
 	}
 	public boolean downloadPict(By locator, String fileName) {
-		return downloadPict( find(locator), fileName);
+		return downloadPict( driver.findElement(locator), fileName);
 	}
 	public boolean downloadPict(String url, String fileName) {
 		try {
@@ -289,10 +296,13 @@ public class BasePage {
 	}
 
 	/* ---------------------------------------------------------------------------
-	Wait, Selenium is too fast ^_^
+	Wait, Selenium is too fast ^_^ => explicit wait methods
 	--------------------------------------------------------------------------- */
+
 	//Check for a given condition every 500ms until it returns successfully or timeout
-	public void waitFor(WebElement webElement) {
+	//wait for a bit after. This is important in the case of Ajax when the information just arrived but has not been displayed yet
+	public void waitFor(WebElement webElement, int milliseconds)
+	{
 		try
 		{
 			WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
@@ -304,11 +314,21 @@ public class BasePage {
 			e.printStackTrace();
 			//throw new NoSuchElementException("No webElement");
 		}
+		Util.wait(milliseconds);
 	}
-	public void waitFor(By locator) {
+	public void waitFor(WebElement webElement) {
+		waitFor(webElement, 0);
+	}
+
+	//visibilityOfElementLocated works better than visibilityOf in some cases
+	public void waitFor(By locator, int milliseconds) {
 		WebDriverWait wait = new WebDriverWait(driver, Constants.TIMEOUT);
 		//WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated( locator));
-		wait.until(ExpectedConditions.visibilityOfElementLocated( locator));
+		wait.until(ExpectedConditions.visibilityOfElementLocated( locator ));
+		Util.wait(milliseconds);
+	}
+	public void waitFor(By locator) {
+		waitFor(locator, 0);
 	}
 
 	//Wait for a specific title
@@ -319,6 +339,45 @@ public class BasePage {
 		if ( !checkPartialTitle(title) )
 			throw new IllegalStateException("Not at: "+ title);
 	}
+
+	/* ---------------------------------------------------------------------------
+	iFrames
+	--------------------------------------------------------------------------- */
+
+    //Return the number of iframe present in the page
+    public int nbIFrame() {
+		List<WebElement> myIframes= driver.findElements(By.tagName("iframe"));
+		return myIframes.size();
+    }
+
+    //Go to an iFrame based on the xpath, and return the ID of the original iframe so we can return back
+    public String visitIFrame(WebElement webElement) {
+    	String myOriginalWindowHandle = driver.getWindowHandle();
+    	driver.switchTo().frame(webElement);
+    	return myOriginalWindowHandle;
+    }
+    public String visitIFrame(By locator) {
+    	return visitIFrame( driver.findElement(locator) );
+    }
+
+    //Search for a webElement inside a iFrame
+    public String searchIFrame(By locator) {
+    	String iFrameHandle_original = driver.getWindowHandle();
+    	String iFrameHandle = null;
+
+    	List<WebElement> iframes= driver.findElements(By.tagName("iframe"));
+		for (int i=0; i<iframes.size(); i++)
+		{
+			driver.switchTo().frame(i);
+			if (driver.findElements( locator ).size() != 0)
+			{
+				iFrameHandle = driver.getWindowHandle();
+		    	break;
+			}
+		}
+		driver.switchTo().window(iFrameHandle_original);
+		return iFrameHandle;
+    }
 
 	/* ---------------------------------------------------------------------------
 	Other methods

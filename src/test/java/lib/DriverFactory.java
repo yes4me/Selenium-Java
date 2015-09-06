@@ -6,6 +6,8 @@ Purpose:	This is a standard in the industry according to the book "Instant RSpec
 
 package lib;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,7 +16,7 @@ import config.Constants;
 import config.Paths;
 
 public class DriverFactory {
-	private WebDriver driver = null;
+	private static WebDriver driver = null;
 
 	public WebDriver driver() {
 		if (Constants.BROWSER.equals("chrome"))
@@ -26,6 +28,7 @@ public class DriverFactory {
 		{
 			driver = new FirefoxDriver();
 		}
+		driver.manage().timeouts().implicitlyWait(Constants.GLOBAL_TIMEOUT, TimeUnit.SECONDS);
 		return driver;
 	}
 }

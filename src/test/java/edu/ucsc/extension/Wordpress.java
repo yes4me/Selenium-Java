@@ -8,22 +8,21 @@ package edu.ucsc.extension;
 import java.util.ArrayList;
 import java.util.List;
 
-import lib.DriverFactory;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import config.Constants;
+import config.Paths;
+import lib.DriverFactory;
 import pages_wordpress.P_Dashboard;
 import pages_wordpress.P_LoginPage;
 import pages_wordpress.P_MediaLibrary;
 import pages_wordpress.P_MediaNew;
 import pages_wordpress.P_NewPostForm;
 import pages_wordpress.P_PostDashboard;
-import config.Constants;
-import config.Paths;
 
 public class Wordpress {
 	private WebDriver driver;

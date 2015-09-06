@@ -9,9 +9,6 @@ package pages_various;
 import java.util.ArrayList;
 import java.util.List;
 
-import lib.BasePage;
-import lib.Util;
-
 import org.apache.commons.io.FilenameUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
+import lib.BasePage;
+import lib.Util;
 
 public class P_FlickrDownloader extends BasePage implements BasicPageObject {
 	private final static int PICTURES_DOWNLOADED_MAX = 5;	//Max number of pictures that will be downloaded
@@ -52,7 +51,7 @@ public class P_FlickrDownloader extends BasePage implements BasicPageObject {
 		while (counter++ < PICTURES_DOWNLOADED_MAX)
 		{
 			picture_WebElement = finds(By.className("overlay"));
-			Util.wait(1);
+			Util.wait(1000);
 			if (picture_WebElement.size() >= PICTURES_DOWNLOADED_MAX)
 				break;
 		}
