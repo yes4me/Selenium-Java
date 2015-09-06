@@ -11,9 +11,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
@@ -253,6 +255,70 @@ public class BasePage {
 	}
 	public boolean submit(By locator) {
 		return submit( driver.findElement(locator) );
+	}
+
+	/* ---------------------------------------------------------------------------
+	Cookies
+	--------------------------------------------------------------------------- */
+
+	//Check if a specific cookie is present
+	public boolean checkCookie(String name) {
+		return (driver.manage().getCookieNamed(name)!=null)? true:false;
+	}
+	public boolean addCookie(String name, String value) {
+		Cookie cookie = new Cookie(name, value);
+		try
+		{
+			driver.manage().addCookie(cookie);
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
+		return true;
+	}
+	public boolean createCookie(String name, String value) {
+		if ( checkCookie(name) )
+			return false;
+		return addCookie(name, value);
+	}
+	public boolean updateCookie(String name, String value) {
+		if ( !checkCookie(name) )
+			return false;
+		return addCookie(name, value);
+	}
+	public String readCookieValue(String name) {
+		if ( !checkCookie(name) )
+			return "";
+		Cookie cookie = driver.manage().getCookieNamed(name);
+		return cookie.getValue();
+	}
+	public boolean deleteCookie(String name) {
+		if ( !checkCookie(name) )
+			return false;
+		Cookie cookie = driver.manage().getCookieNamed(name);
+		driver.manage().deleteCookieNamed(name);
+		return true;
+	}
+
+	//Return the number of cookies
+	public int countAllCookies() {
+		Set<Cookie> allCookies = driver.manage().getCookies();
+		return allCookies.size();
+	}
+	//View all the cookies information
+	public void readAllCookies() {
+		Set<Cookie> allCookies = driver.manage().getCookies();
+		for (Cookie aCookie : allCookies)
+		{
+			System.out.println(aCookie.getName() +": "+ aCookie.getValue());
+		}
+	}
+	//Return the number of cookies deleted
+	public int deleteAllCookies() {
+		int cookieNb = countAllCookies();
+		driver.manage().deleteAllCookies();
+		return cookieNb;
 	}
 
 	/* ---------------------------------------------------------------------------
