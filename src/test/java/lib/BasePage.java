@@ -296,7 +296,6 @@ public class BasePage {
 	public boolean deleteCookie(String name) {
 		if ( !checkCookie(name) )
 			return false;
-		Cookie cookie = driver.manage().getCookieNamed(name);
 		driver.manage().deleteCookieNamed(name);
 		return true;
 	}
