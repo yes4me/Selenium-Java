@@ -17,6 +17,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -323,6 +324,25 @@ public class BasePage {
 	/* ---------------------------------------------------------------------------
 	Pictures
 	--------------------------------------------------------------------------- */
+
+	//Check if a picture has been loaded
+	boolean isPictDisplayed(WebElement pict)
+	{
+		Boolean imageLoaded1 = (Boolean) ((JavascriptExecutor)driver).executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth>0", pict);
+		return (!imageLoaded1)? false:true;
+	}
+	//Check if all pictures are loaded
+	boolean isAllPictsDisplayed()
+	{
+		List<WebElement> picts = driver.findElements(By.tagName("img"));
+		for (WebElement pict : picts)
+		{
+			if (! isPictDisplayed(pict))
+				return false;
+		}
+		return true;
+	}
+
 	//Source: http://stackoverflow.com/questions/997482/does-java-support-default-parameter-values
 	public boolean takeScreenshot(String... fileName) {
 		String screenshotFileName = fileName.length>0? fileName[0] : Paths.SCREENSHOT_FILENAME;
@@ -339,6 +359,7 @@ public class BasePage {
 		}
 		return false;
 	}
+
 	public boolean downloadPict(WebElement webElement, String fileName) {
 		String url = webElement.getAttribute("src");
 		return downloadPict(url, fileName);
