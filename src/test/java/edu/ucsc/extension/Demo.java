@@ -121,6 +121,7 @@ public class Demo {
 
 	//Testing the attributes: After you google "12345", check if the google map refer to the address 12345
 	@Test
+	@Ignore
 	public void google_12345()
 	{
 		System.out.println("RUNNING TEST: google_12345");

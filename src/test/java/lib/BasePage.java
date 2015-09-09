@@ -240,18 +240,12 @@ public class BasePage {
 	}
 
 	public boolean submit(WebElement webElement) {
-		System.out.println("IN");
-		//driver.findElement( By.name("btnK") ).submit();
-
 		waitFor(webElement);
-		System.out.println("WAIT FONE");
 		if ( isDisplayed(webElement) )
 		{
-			System.out.println("INSIDE");
 			webElement.submit();
 			return true;
 		}
-		System.out.println("OUT");
 		return false;
 	}
 	public boolean submit(By locator) {
