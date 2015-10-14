@@ -339,7 +339,7 @@ public class BasePage {
 
 	//Source: http://stackoverflow.com/questions/997482/does-java-support-default-parameter-values
 	public boolean takeScreenshot(String... fileName) {
-		String screenshotFileName = fileName.length>0? fileName[0] : Paths.SCREENSHOT_FILENAME;
+		String screenshotFileName = fileName.length>0? fileName[0] : Paths.DEFAULT_SCREENSHOT_FILENAME;
 		try
 		{
 			File screenFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

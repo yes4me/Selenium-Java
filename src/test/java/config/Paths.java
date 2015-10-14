@@ -11,8 +11,9 @@ import java.io.File;
 public class Paths {
 	public static final String HOME_FOLDER = System.getProperty("user.dir");
 	public static final String CHROME_FILE = ".\\vendor\\chromedriver.exe";
+
 	public static final String SCREENSHOT_FOLDER = ".\\src\\test\\java\\screenshot\\";
-	public static final String SCREENSHOT_FILENAME = "screenshot.png";
+	public static final String DEFAULT_SCREENSHOT_FILENAME = "screenshot.png";
 	public static final String TMP_FOLDER = ".\\build\\tmp\\";
 
 	public static final String BASE_URL = "http://www.google.com";
