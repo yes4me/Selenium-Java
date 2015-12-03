@@ -6,13 +6,12 @@ Purpose:	Page object
 
 package pages_various;
 
-import lib.BasePage;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
+import lib.BasePage;
 
 public class P_MortgageCalculator extends BasePage implements BasicPageObject {
 	@FindBy(name = "param[homevalue]") private WebElement homeValue_input;
@@ -34,7 +33,7 @@ public class P_MortgageCalculator extends BasePage implements BasicPageObject {
 
 	@Override
 	public void visit() {
-		visit(Paths.MORGAGECALCULATOR_URL);
+		visitURL(Paths.MORGAGECALCULATOR_URL);
 	}
 
 	@Override
@@ -50,8 +49,8 @@ public class P_MortgageCalculator extends BasePage implements BasicPageObject {
 		typeNew(homeValue_input, "600000");
 		typeNew(loanAmount_input, "500000");
 		typeNew(interestRate_input, "5");
-		select(startDateMonth_option, "Jan");
-		select(startDateYear_option, "2016");
+		setSelect(startDateMonth_option, "Jan");
+		setSelect(startDateYear_option, "2016");
 
 		click(parameters_link);
 		click(drawCharts_checkbox, false);

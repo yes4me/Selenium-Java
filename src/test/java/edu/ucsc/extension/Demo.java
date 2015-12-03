@@ -41,7 +41,7 @@ public class Demo {
 	public void basic() {
 		System.out.println("RUNNING TEST: basic");
 		BasePage page = new BasePage(driver);
-		page.visit("http://www.google.com");
+		page.visitURL("http://www.google.com");
 
 		WebElement element = driver.findElement(By.name("q"));
 		element.sendKeys("UCSC Extension");
@@ -54,7 +54,7 @@ public class Demo {
 	public void testingKeys() {
 		System.out.println("RUNNING TEST: testingKeys");
 		BasePage page = new BasePage(driver);
-		page.visit("http://www.google.com");
+		page.visitURL("http://www.google.com");
 
 		//Display on the console
 		((JavascriptExecutor)driver).executeScript("console.log('Logging from Selenium');");
@@ -81,7 +81,7 @@ public class Demo {
 	public void testingJavascript() {
 		System.out.println("RUNNING TEST: testingJavascript");
 		BasePage page = new BasePage(driver);
-		page.visit("http://www.mortgagecalculator.org");
+		page.visitURL("http://www.mortgagecalculator.org");
 
 		((JavascriptExecutor)driver).executeScript("$(\"select[name='param[start_month]']\").val('3')");
 		((JavascriptExecutor)driver).executeScript("$(\"select[name='param[start_year]']\").val('2014')");
@@ -93,7 +93,7 @@ public class Demo {
 	public void testingIframes() {
 		System.out.println("RUNNING TEST: testingIframes");
 		BasePage page = new BasePage(driver);
-		page.visit("http://www.credomobile.com/coverage");
+		page.visitURL("http://www.credomobile.com/coverage");
 
 		page.click( By.className("close") );
 
@@ -126,7 +126,7 @@ public class Demo {
 	{
 		System.out.println("RUNNING TEST: google_12345");
 		BasePage page = new BasePage(driver);
-		page.visit("http://www.google.com");
+		page.visitURL("http://www.google.com");
 
 		page.type( By.name("q"), "12345");
 		//driver.findElement( By.name("btnK") ).submit();	//If we don't wait at all, we can use "btnK"

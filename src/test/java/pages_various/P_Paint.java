@@ -6,12 +6,11 @@ Purpose:	Page object
 
 package pages_various;
 
-import lib.BasePage;
-import lib.MyMouse;
-
 import org.openqa.selenium.WebDriver;
 
 import config.Paths;
+import lib.BasePage;
+import lib.MyMouse;
 
 public class P_Paint extends BasePage implements BasicPageObject {
 	private final static int CLICK_INTERVAL = 10;
@@ -25,7 +24,7 @@ public class P_Paint extends BasePage implements BasicPageObject {
 
 	@Override
 	public void visit() {
-		visit(Paths.TEST_PAINTING_URL);
+		visitURL(Paths.TEST_PAINTING_URL);
 	}
 
 	@Override

@@ -36,7 +36,7 @@ public class P_NewPostForm extends CommonPage implements BasicPageObject {
 
 	@Override
 	public void visit() {
-		visit(Paths.WORDPRESS_URL + PARTIAL_URL);
+		visitURL(Paths.WORDPRESS_URL + PARTIAL_URL);
 	}
 
 	@Override

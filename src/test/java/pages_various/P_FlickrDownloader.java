@@ -32,7 +32,7 @@ public class P_FlickrDownloader extends BasePage implements BasicPageObject {
 
 	@Override
 	public void visit() {
-		visit(Paths.FLICKR_URL);
+		visitURL(Paths.FLICKR_URL);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class P_FlickrDownloader extends BasePage implements BasicPageObject {
 		//Visit the correct page and download the pictures
 		for (String url : picture_url)
 		{
-			visit(url);
+			visitURL(url);
 			windowsMaximize();
 			click(downloadHREF);
 			click(viewAllSizeHREF);

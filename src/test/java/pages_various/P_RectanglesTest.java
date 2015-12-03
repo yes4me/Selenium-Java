@@ -8,13 +8,12 @@ package pages_various;
 
 import java.util.List;
 
-import lib.BasePage;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
+import lib.BasePage;
 
 public class P_RectanglesTest extends BasePage implements BasicPageObject {
 	@FindBy(className = "rect") private List<WebElement> rectangle_div;
@@ -25,7 +24,7 @@ public class P_RectanglesTest extends BasePage implements BasicPageObject {
 
 	@Override
 	public void visit() {
-		visit(Paths.RECTANGLES_TEST_URL);
+		visitURL(Paths.RECTANGLES_TEST_URL);
 	}
 
 	@Override

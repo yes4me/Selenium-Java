@@ -40,7 +40,7 @@ public class P_PostDashboard extends CommonPage implements BasicPageObject {
 
 	@Override
 	public void visit() {
-		visit(Paths.WORDPRESS_URL + PARTIAL_URL);
+		visitURL(Paths.WORDPRESS_URL + PARTIAL_URL);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class P_PostDashboard extends CommonPage implements BasicPageObject {
 		}
 	}
 	public void BulkActions(String action) {
-		select(actionAll_select, action);
+		setSelect(actionAll_select, action);
 		click(submitApply_button);
 	}
 

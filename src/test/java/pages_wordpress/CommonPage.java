@@ -6,11 +6,10 @@ Purpose:	Common defined methods for all page objects for wordpress.com
 
 package pages_wordpress;
 
-import lib.BasePage;
-
 import org.openqa.selenium.WebDriver;
 
 import config.Paths;
+import lib.BasePage;
 
 public class CommonPage extends BasePage {
 	private static final String PARTIAL_URL = "/wp-login.php?loggedout=true";
@@ -19,6 +18,6 @@ public class CommonPage extends BasePage {
 		super(driver);
 	}
 	public void Logout() {
-		visit(Paths.WORDPRESS_URL + PARTIAL_URL);
+		visitURL(Paths.WORDPRESS_URL + PARTIAL_URL);
 	}
 }

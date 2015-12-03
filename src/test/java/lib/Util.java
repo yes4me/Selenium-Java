@@ -12,7 +12,8 @@ public class Util {
 	public static void wait(int milliseconds) {
 		try {
 			Thread.sleep(milliseconds);
-		}catch(Exception e) {
+		}
+		catch(Exception e) {
 			//ignore
 		}
 	}
@@ -25,7 +26,5 @@ public class Util {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

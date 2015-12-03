@@ -2,14 +2,13 @@ package pages_various;
 
 import java.util.List;
 
-import lib.BasePage;
-import lib.MyMouse;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import config.Paths;
+import lib.BasePage;
+import lib.MyMouse;
 
 public class P_Sorter extends BasePage implements BasicPageObject {
 	//@FindBy(className ="ui-state-default ui-sortable-handle") private WebElement slot_LI;	//NOT ALLOWED
@@ -24,7 +23,7 @@ public class P_Sorter extends BasePage implements BasicPageObject {
 
 	@Override
 	public void visit() {
-		visit(Paths.SORTER_URL);
+		visitURL(Paths.SORTER_URL);
 	}
 
 	@Override
