@@ -256,10 +256,40 @@ public class BasePage {
 	Forms: select
 	--------------------------------------------------------------------------- */
 
-	public void setSelect(WebElement webElement, String optionText) {
-		Select dropDown = new Select(webElement);
-		dropDown.selectByVisibleText(optionText);
+	/**
+	 * Select the element in a drop-down list using WebElement and regular expression on the value
+	 *
+	 * @param webElement targeted HTML element
+	 * @param optionRegex regular expression of the text searched
+	 * @return true Successfully selected the element
+	 */
+	public boolean setSelect(WebElement webElement, String optionRegex) {
+		//Original code:
+			//Select dropDown = new Select(webElement);
+			//dropDown.selectByVisibleText(optionText);
+		List<WebElement> options = webElement.findElements(By.tagName("option"));
+		if (options.size()==0)
+			return false;
+		for (WebElement option : options)
+		{
+			//Clean up the option text (i.e. remove any extra new line)
+			String optionText = option.getText().trim();
+			optionText = optionText.replaceAll("\n", " ");
+			if ( optionText.matches(optionRegex) )
+			{
+				option.click();
+				break;
+			}
+		}
+		return true;
 	}
+	/**
+	 * Select the element in a drop-down list using By and regular expression on the value
+	 *
+	 * @param selectLocator targeted HTML element
+	 * @param optionRegex regular expression of the text searched
+	 * @return true Successfully selected the element
+	 */
 	public void setSelect(By selectLocator, String optionText) {
 		//WAY#1:
 		/*
@@ -283,10 +313,22 @@ public class BasePage {
 		setSelect( driver.findElement(selectLocator), optionText);
 	}
 
+	/**
+	 * Select the element in a drop-down list using WebElement and index
+	 *
+	 * @param webElement targeted HTML element
+	 * @param index Specifies the index of the selected option in a drop-down list
+	 */
 	public void setSelect(WebElement webElement, int index) {
 		Select dropdown = getSelect(webElement);
 		dropdown.selectByIndex(index);
 	}
+	/**
+	 * Select the element in a drop-down list using By and index
+	 *
+	 * @param selectLocator targeted HTML element
+	 * @param index Specifies the index of the selected option in a drop-down list
+	 */
 	public void setSelect(By selectLocator, int index) {
 		Select dropdown = getSelect(selectLocator);
 		dropdown.selectByIndex(index);
@@ -572,8 +614,8 @@ public class BasePage {
 		}
 		return false;
 	}
-	public void waitFor(By locator) {
-		waitFor(locator, 0);
+	public boolean waitFor(By locator) {
+		return waitFor(locator, 0);
 	}
 
 	//Wait for a specific title
