@@ -5,10 +5,18 @@ repositories {
 }
 
 dependencies {
-	testCompile 'junit:junit:4.12'
-	testCompile 'org.seleniumhq.selenium:selenium-java:2.45.0'
-	testCompile 'org.seleniumhq.selenium:selenium-chrome-driver:2.47.1'
-	testCompile 'commons-io:commons-io:2.4'
+	//FileTree is useful for including a number of files within a directory
+   	compile fileTree(dir: 'lib', include: ['*.jar'])
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+   	
+   	//The dependencies required to compile the test source of the project. By default, also includes the compiled production classes and the compile time dependencies.
+    compile group: 'junit', name: 'junit', version: '4.+'
+	compile 'org.testng:testng:6.9.6'
+	compile 'org.seleniumhq.selenium:selenium-java:2.48.2'
+	compile 'org.seleniumhq.selenium:selenium-server:2.48.2'
+	compile 'org.seleniumhq.selenium:selenium-chrome-driver:2.48.2'
+	compile 'org.seleniumhq.selenium:selenium-firefox-driver:2.48.2'
+	compile 'com.github.detro.ghostdriver:phantomjsdriver:1.1.0'
 }
 
 
